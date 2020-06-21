@@ -1,71 +1,112 @@
-export ARCHFLAGS="-arch x86_64"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-######################
-# COMMAND COMPLETION #
-######################
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 
-###
-# Bash
-###
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="agnoster"
 
-###
-# NVM
-###
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-###
-# Git
-###
-source /usr/local/etc/bash_completion.d/git-completion.bash
-GIT_PS1_SHOWDIRTYSTATE=true
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-###############
-# VIRTUAL ENV #
-###############
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-# export WORKON_HOME=$HOME/.virtualenvs
-# VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
-# source /usr/local/bin/virtualenvwrapper.sh
-source ~/.bash_1prompt
-# export PYTHONSTARTUP=$HOME/.pythonrc.py
-alias python=python3
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-########
-# PATH #
-########
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-export PATH=/Users/shussain/.virtualenvs/aws/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-###########
-# HISTORY #
-###########
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-export HISTTIMEFORMAT="%h %d %H:%M:%S "
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-shopt -s histappend
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export HISTCONTROL=ignorespace:ignoredups:erasedups
-shopt -s cmdhist
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git node nvm vscode z zsh-autosuggestions zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+##########
+# PROMPT #
+##########
+
+# export PROMPT='%(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%B%/%b%{$reset_color%} $(git_prompt_info)'
 
 ########
 # JAVA #
 ########
 
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-
-##################
-# AD HOC SCRIPTS #
-##################
-
-export AD_HOC_SCRIPTS_PATH=/Users/shussain/Code/ad-hoc-scripts/
 
 ###########
 # ALIASES #
@@ -107,6 +148,10 @@ alias extract_logs="/Users/shussain/Code/Citadel/einstein/scripts/bin/logParser.
 alias h1d='history | grep "$(date -v-1d +%b\ %d)"'
 alias h3d='history | grep "$(date -v-3d +%b\ %d)"'
 alias jv="java -version"
+alias python="python3"
+alias p="python3"
+alias p2="python2"
+alias p3="python3"
 
 alias fixaudio="sudo killall coreaudiod"
 
@@ -118,8 +163,8 @@ alias ssh_prom_stg="ssh ec2-34-216-125-169.us-west-2.compute.amazonaws.com"
 alias ssh_prom_prd="ssh ec2-54-153-78-23.us-west-1.compute.amazonaws.com"
 
 alias ec="subl ~/.aws/credentials"
-alias eb="subl ~/.bash_profile"
-alias sb="source ~/.bash_profile"
+alias ez="code ~/.zshrc"
+alias sz="exec zsh"
 alias ga="git add"
 alias gaa="git add ."
 alias gs="git status"
@@ -164,16 +209,8 @@ alias start_redis="docker run --name redis --publish 6379:6379 --detach redis:3.
 alias release_start="mvn jgitflow:release-start"
 alias release_finish="mvn jgitflow:release-finish -Dmaven.javadoc.skip=true"
 
-alias queries_stage_rmn_subs_info="printf \"SELECT \n\tsu.email, \n\tsu.emailUuid, \n\tsu.charonUuid, \n\tsu.lastActivityDate, \n\tsu.subscriptions, \n\tsu.lastKnownNotificationSettings, \n\tsu.createTimestamp, \n\tCOALESCE(sbu.id, 0) AS sbuId, \n\tsbu.externalId, \n\tsbu.emailSubscribe, \n\tsbu.isValid, \n\tsbav1.attributeValue AS stagedSubscription, \n\tsbav2.attributeValue AS stagedEmailUuid, \n\tsbav3.attributeValue AS stagedLastActivityDate, \n\tsbav4.attributeValue AS stagedEmailSubscribeDate, \n\tsbav5.attributeValue AS stagedUserUuid \nFROM subscription_user su \n\tLEFT JOIN staged_braze_user sbu ON su.email = sbu.email \n\tLEFT JOIN staged_braze_attribute_value sbav1 ON sbu.id = sbav1.stagedBrazeUserId AND sbav1.attributeName = 'subscription' \n\tLEFT JOIN staged_braze_attribute_value sbav2 ON sbu.id = sbav2.stagedBrazeUserId AND sbav2.attributeName = 'email_uuid' \n\tLEFT JOIN staged_braze_attribute_value sbav3 ON sbu.id = sbav3.stagedBrazeUserId AND sbav3.attributeName = 'last_activity_date' \n\tLEFT JOIN staged_braze_attribute_value sbav4 ON sbu.id = sbav4.stagedBrazeUserId AND sbav4.attributeName = 'email_subscribe_date' \n\tLEFT JOIN staged_braze_attribute_value sbav5 ON sbu.id = sbav5.stagedBrazeUserId AND sbav5.attributeName = 'user_uuid' \nWHERE (su.emailUuid IS NOT NULL OR su.charonUuid IS NOT NULL) AND (sbu.isValid IS NULL OR sbu.isValid = 'Y') AND su.lastActivityDate >= DATE_SUB(NOW(), INTERVAL 180 day);\" | pbcopy && echo \"query copied to clipboard\""
-alias queries_top_offers="printf \"SELECT 'null' AS placementUuid, CASE WHEN rpc.productCardId IS NULL THEN 'OFFER' ELSE 'PRODUCT' END AS placementType, tof.title as offerTitle, tof.couponId, rc.uuid, rc.couponType, rc.couponRedemptionType, rc.couponRedemptionChannel, tof.endDate, tof.domain, rs.title, 'null' AS ratio4To3, 'null' AS landingUrl, rpc.productCardId, rpc.ideaUrl, rpc.imageUrl, rpc.originalPrice, rpc.finalPrice, tof.dateLastUsed, tof.campaignLastUsedIn \nFROM top_offer tof \nJOIN rmn_coupon rc ON tof.offerUuid = rc.uuid \nLEFT JOIN rmn_site rs ON rc.site = rs.siteId \nLEFT JOIN rmn_product_card rpc ON rc.uuid = rpc.couponUuid \nWHERE \n\t tof.category = 'top_cashback' AND \n\t tof.startDate <= CURRENT_DATE AND tof.endDate >= CURRENT_DATE AND rc.score >= 50 AND tof.offerUuid IN (\n\t\t\t SELECT offerUuid \n\t\t\t FROM top_offer\n\t\t\t WHERE rank IS NOT NULL \n\t\t\t GROUP BY offerUuid \n\t\t) \nORDER BY tof.rank ASC;\" | pbcopy && echo \"query copied to clipboard\""
-alias queries_update_braze="printf \"SELECT id, externalId, brazeId, GROUP_CONCAT(attributeNames) AS attributeNames, GROUP_CONCAT(attributeValues) AS attributeValues, GROUP_CONCAT(email) AS email, \n\t\tGROUP_CONCAT(emailSubscribe) AS emailSubscribe, GROUP_CONCAT(pushSubscribe) AS pushSubscribe \nFROM (\n   SELECT sbu.id AS id, sbu.externalId AS externalId, sbu.brazeId AS brazeId, SUM(sbav.dirtiness * ba.dirtinessweight) AS overallDirtiness, GROUP_CONCAT(sbav.attributeName SEPARATOR '-;-') AS attributeNames, \n\t\tGROUP_CONCAT(sbav.attributeValue SEPARATOR '-;-') AS attributeValues, sbu.email AS email, sbu.emailSubscribe AS emailSubscribe, sbu.pushSubscribe AS pushSubscribe \n   FROM staged_braze_user AS sbu \n   JOIN staged_braze_attribute_value AS sbav ON sbu.id = sbav.stagedBrazeUserId \n   JOIN braze_attribute AS ba ON ba.attributeName = sbav.attributeName \n   WHERE sbu.isValid = 'Y' AND sbav.dirtiness > 0 \n   GROUP BY sbu.id \n   UNION \n   SELECT sbu.id AS id, sbu.externalId AS externalId, bu.brazeId AS brazeId, 10000 AS overallDirtiness, null, null, sbu.email, sbu.emailSubscribe, sbu.pushSubscribe \n   FROM braze_user AS bu \n   JOIN staged_braze_user AS sbu ON bu.brazeId = sbu.brazeId \n   WHERE sbu.isValid = 'Y' AND ( \n\t   (sbu.email != bu.email) \n\t   OR (sbu.email IS NULL AND bu.email IS NOT NULL) \n\t   OR (sbu.email IS NOT NULL AND bu.email IS NULL) \n\t   OR (sbu.emailSubscribe != bu.emailSubscribe) \n\t   OR (sbu.emailSubscribe IS NULL AND bu.emailSubscribe IS NOT NULL) \n\t   OR (sbu.emailSubscribe IS NOT NULL AND bu.emailSubscribe IS NULL) \n\t   OR (sbu.pushSubscribe != bu.pushSubscribe) \n\t   OR (sbu.pushSubscribe IS NULL AND bu.pushSubscribe IS NOT NULL) \n\t   OR (sbu.pushSubscribe IS NOT NULL AND bu.pushSubscribe IS NULL) \n   ) \n) temp \nGROUP BY id \nORDER BY MAX(overallDirtiness) DESC;\" | pbcopy && echo \"query copied to clipboard\""
-alias queries_update_segment="printf \"SELECT \n\tsbu.id, \n\tsbu.brazeId, \n\tsbu.deviceId, \n\tsbu.email, \n\tsbu.emailSubscribe, \n\tsu.emailUuid, \n\tsu.charonUuid, \n\tsu.lastActivityDate, \n\tsu.originalSubscriptionSource \nFROM staged_braze_user sbu \n\tLEFT JOIN subscription_user su ON sbu.email = su.email \nWHERE sbu.brazeId IS NOT NULL AND sbu.isValid = 'Y' AND (sbu.lastUpdateTimestamp > DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY) OR su.lastUpdateTimestamp > DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY));\" | pbcopy && echo \"query copied to clipboard\""
-alias queries_ep_update="printf \"UPDATE email_placement SET startDate = CURRENT_DATE, endDate = CURRENT_DATE WHERE startDate = '';\" | pbcopy && echo \"query copied to clipboard\""
-alias queries_epc="printf \"SELECT ep.placementTarget, epc.* FROM email_placement ep JOIN email_placement_content epc ON ep.id = epc.placementId WHERE ep.startDate = CURRENT_DATE;\" | pbcopy && echo \"query copied to clipboard\""
-alias queries_epcf="printf \"SELECT ep.placementTarget, epc.* FROM email_placement ep JOIN email_placement_content epc ON ep.id = epc.placementId WHERE ep.startDate = CURRENT_DATE AND ep.emailType = 'FLAGSHIP';\" | pbcopy && echo \"query copied to clipboard\""
-alias queries_epcb="printf \"SELECT ep.placementTarget, epc.* FROM email_placement ep JOIN email_placement_content epc ON ep.id = epc.placementId WHERE ep.startDate = CURRENT_DATE AND ep.emailType IN ('FLAGSHIP', 'OTHER');\" | pbcopy && echo \"query copied to clipboard\""
-
 alias ngrok="~/Tools/ngrok"
+alias urldecode='perl -n -E '\''use URI::Escape; print uri_unescape($_);'\'''
 
 ##############
 # KUBERNETES #
@@ -346,11 +383,8 @@ function delete_all_merged_branches {
   fi
 }
 
-alias urldecode='perl -n -E '\''use URI::Escape; print uri_unescape($_);'\'''
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
-npmauth=$(perl -ne 'print "$1" if m{npm.rmn.io/:_authToken="(.*?)"}' ~/.npmrc);
-export NPM_RMN_TOKEN="$npmauth";
-export AD_HOC_SCRIPTS_PATH=/Users/shussain/Code/ad-hoc-scripts
-export PYTHONPATH=/Users/shussain/Code/ad-hoc-scripts/common
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
